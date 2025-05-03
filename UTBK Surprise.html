@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Special Letter For U</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Press+Start+2P&display=swap');
+
+  /* Reset */
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    font-family: 'Fredericka the Great', cursive;
+    background: radial-gradient(circle at center, #ffefbd, #ffc3a0);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+  }
+
+  #container {
+    background: #fff7f0cc;
+    max-width: 350px;
+    max-height: 600px;
+    width: 95vw;
+    height: 95vh;
+    border-radius: 25px;
+    box-shadow: 0 0 40px #ff8453aa;
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  /* Common styles for pages */
+  .page {
+    flex-grow: 1;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    text-align: center;
+  }
+  .page.active {
+    display: flex;
+  }
+
+  h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.4rem;
+    color: #ff5a2e;
+    margin: 0 0 15px;
+    text-shadow: 1px 1px 6px #ff9c78;
+    letter-spacing: 1.7px;
+  }
+  h2 {
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 1.2rem;
+    color: #dd4e1fdd;
+    margin-top: 0; margin-bottom: 14px;
+  }
+  p {
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 1rem;
+    color: #7a3c25cc;
+    margin: 4px 0;
+  }
+
+  /* PAGE 1 - Name Input */
+  #page1 input[type="text"] {
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 1.2rem;
+    padding: 10px 14px;
+    width: 80%;
+    border-radius: 20px;
+    border: 2px solid #ff7f50;
+    text-align: center;
+    box-shadow: 0 0 10px #ffa078aa;
+    transition: border-color 0.3s ease;
+  }
+  #page1 input[type="text"]:focus {
+    border-color: #ff4a00;
+    outline: none;
+  }
+  #page1 button {
+    margin-top: 20px;
+    background: linear-gradient(45deg, #ff5e27, #ff7f50);
+    border: none;
+    border-radius: 45px;
+    padding: 12px 30px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9rem;
+    color: white;
+    box-shadow: 0 6px 15px #ff664dcc;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    user-select: none;
+  }
+  #page1 button:hover, #page1 button:focus {
+    box-shadow: 0 8px 18px #ff8866cc;
+    transform: scale(1.05);
+    outline: none;
+  }
+  #page1 button:active {
+    transform: scale(0.95);
+    box-shadow: 0 4px 10px #d94d18cc;
+  }
+  #page1 .error {
+    color: #cc2200;
+    margin-top: 8px;
+    font-size: 0.9rem;
+  }
+
+  /* PAGE 2 - Quotes and Game */
+  #page2 {
+    position: relative;
+  }
+
+  #greeting {
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 1.2rem;
+    color: #d84c1a;
+    margin-bottom: 12px;
+    user-select: text;
+  }
+
+  #mascot {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 0 12px #ff6c00bb);
+    user-select: none;
+    cursor: default;
+    transition: transform 0.25s ease;
+  }
+
+  #quote-box {
+    background: linear-gradient(135deg, #ffd6b3cc, #ffb07a88);
+    border-radius: 16px;
+    padding: 16px 20px;
+    max-width: 320px;
+    min-height: 110px;
+    font-size: 1rem;
+    font-style: italic;
+    color: #7a3c25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 0 16px #ff8e4988;
+    user-select: text;
+    position: relative;
+  }
+  #quote-box:focus {
+    outline: 3px dashed #ff804c99;
+    outline-offset: 6px;
+  }
+  #quote-box.shake {
+    animation: shakeGame 0.6s ease-in-out;
+  }
+  @keyframes shakeGame {
+    0%, 100% { transform: translateX(0);  }
+    20%, 60% { transform: translateX(-8px) rotate(-4deg); }
+    40%, 80% { transform: translateX(8px) rotate(4deg);}
+  }
+
+  #next-button {
+    background: linear-gradient(45deg, #ff5a2e, #ff7a00);
+    border: none;
+    border-radius: 45px;
+    padding: 11px 28px;
+    margin-top: 26px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.80rem;
+    color: white;
+    box-shadow: 0 6px 14px 
+    cursor pointer;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    user-select: none;
+  }
+  #next-button:hover, #next-button:focus {
+    box-shadow: 0 9px 20px #ff7928cc;
+    transform: scale(1.05);
+    outline: none;
+  }
+  #next-button:active {
+    transform: scale(0.93);
+    box-shadow: 0 4px 10px #ab3e0dcc;
+  }
+
+  #scoreboard {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-family: 'Press Start 2P', cursive;
+    color: #ff5a1e;
+    font-size: 0.9rem;
+    background: #fff0e0cc;
+    padding: 6px 16px;
+    border-radius: 100px;
+    box-shadow: 0 0 16px #ff804699;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: 1.4px;
+    user-select: none;
+  }
+
+  /* PAGE 3 - Secret Surprise */
+  #page3 {
+    flex-direction: column;
+    padding-top: 3px;
+    overflow-y: auto;
+  }
+  #secret-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    color: #ff502a;
+    margin-bottom: 0px;
+    text-shadow: 1px 1px 4px #ff8166;
+  }
+  #secret-message {
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 1rem;
+    color: #d1411c;
+    margin-bottom: 10px;
+    padding: 0 15px;
+  }
+
+  .campus-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    padding-bottom: 20px;
+  }
+  .campus {
+    flex: 0 0 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+  }
+  .campus img {
+    max-width: 90px;
+    max-height: 90px;
+    border-radius: 20px;
+    box-shadow: 0 0 12px #ff6a3a99;
+    background: #ffe6d6;
+    margin-bottom: 6px;
+  }
+  .campus span {
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 0.85rem;
+    color: #7a3c25;
+  }
+
+  /* Sparkle particles on page2 */
+  .particles {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    z-index: 0;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: #ff8c50;
+    box-shadow: 0 0 8px 3px #ff5a00;
+    opacity: 0.8;
+    animation-timing-function: ease-in-out;
+  }
+  @keyframes sparkle {
+    0% {opacity: 0; transform: scale(0);}
+    50% {opacity: 1; transform: scale(1.3);}
+    100% {opacity: 0; transform: scale(0);}
+  }
+
+</style>
+</head>
+<body>
+<div id="container" role="main" aria-label="Kejutan UTBK 2025 Interaktif dengan gaya anime multi halaman">
+  <!-- PAGE 1 -->
+  <section id="page1" class="page active" aria-label="Halaman masukan nama">
+    <h1>Halo Calon Pemenang!</h1>
+    <h2>Kenalan Dulu Yukk 🤗</h2>
+    <input type="text" id="nameInput" placeholder="Tulis namamu di sini" aria-label="Input nama siswa" autocomplete="off" spellcheck="false" />
+    <button id="startBtn" aria-label="Mulai ke kejutan!">Mulai!</button>
+    <div class="error" id="inputError" aria-live="polite"></div>
+  </section>
+
+  <!-- PAGE 2 -->
+<section id="page2" class="page" aria-label="Halaman kutipan dan energi motivasi">
+  <div id="greeting" aria-live="polite"></div>
+  <audio id="bg-audio" src="audio/anime-239882.mp3" loop></audio>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('bg-audio');
+
+    // Mulai audio hanya setelah user berinteraksi
+    const startAudio = () => {
+      audio.play().catch(e => console.log("Autoplay gagal:", e));
+      document.removeEventListener('click', startAudio);
+    };
+
+    document.addEventListener('click', startAudio);
+  });
+</script>
+
+  <!-- Replace mascot SVG with img tags -->
+  <img id="mascot" src="https://i.ibb.co.com/tMLhyV3K/ezgif-com-animated-gif-maker.gif" alt="Maskot anime lucu" style="width: 140px; height: 140px; margin-bottom: 14px;" />
+  <div id="quote-box" tabindex="0" aria-live="polite" aria-atomic="true" title="Klik atau tekan tombol Next untuk kutipan berikutnya."></div>
+  <button id="next-button" aria-label="Kutipan berikutnya">Pencet Lagi Dong ^^</button>
+  <div id="scoreboard" aria-live="polite" aria-atomic="true">Impresi: 0</div>
+
+  <div class="particles" aria-hidden="true"></div>
+</section>
+
+  <!-- PAGE 3 -->
+  <section id="page3" class="page" aria-label="Halaman kejutan rahasia">
+    <h1 id="secret-title"> 🔥Semangat!🔥</h1>
+    <p id="secret-message">Kamu harus Percaya kalau kamu bisa meraih impianmu di kampus-kampus keren ini!</p>
+    <div class="campus-logos" aria-label="Logo kampus politeknik dan universitas">
+      <div class="campus" tabindex="0" aria-label="Politeknik Negeri Media Kreatif">
+        <img src=" https://pelajarinfo.id/wp-content/uploads/2022/11/Politeknik-Negeri-Media-Kreatif-Logo.png" alt="Logo Politeknik Negeri Media Kreatif" />
+        <span>POLIMEDIA</span>
+      </div>
+      <div class="campus" tabindex="0" aria-label="Institut Seni Indonesia Denpasar">
+        <img src="https://isidps.ac.id/wp-content/uploads/2022/09/LOGO-ISI-DENPASAR.png" alt="Logo Institut Seni Indonesia Denpasar" />
+        <span>ISI DENPASAR</span>
+      </div>
+      <div class="campus" tabindex="0" aria-label="Universitas Negeri Jakarta (UNJ)">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwxrMX7mL1UVtIcr2rqsCv2iGj5H6lKb6e67LL0PyNcEBRjMy8CJ1HeEd1t0sUPQ05KqtKwYpolp_peb4JjFhSw3ypncMpwtHKR7Xh_0YtfroKcoSYiILoXdffeWg8GROv2_swjholx7QCVJg_8UhbL9kES29FR44-4TxPK-_v0lN9VqzY25mLgA/w313-h320/UNJ%20(Universitas%20Negeri%20Jakarta)%20Logo%20(KoleksiLogo.com).png" alt="Logo UNJ" />
+        <span>UNJ</span>
+      </div>
+      <div class="campus" tabindex="0" aria-label="Universitas Gadjah Mada">
+        <img src=" https://satriadata.kemdikbud.go.id/wp-content/uploads/2020/08/Logo-IPB-baru.png" alt="Logo UGM" />
+        <span>IPB</span>
+      </div>
+      <div class="campus" tabindex="0" aria-label="Institut Teknologi Bandung">
+        <img src="https://upload.wikimedia.org/wikipedia/id/4/44/Logo_PENS.png" alt="Logo ITB" />
+        <span>PENS</span>
+      </div>
+      <div class="campus" tabindex="0" aria-label="Universitas Indonesia">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Logo_undiksha.png" alt="Logo Universitas Indonesia" />
+        <span>UNDIKSHA</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  // State management
+  let userName = '';
+  let energy = 0;
+  let currentIndex = 0;
+
+  // DOM elements
+  const container = document.getElementById('container');
+  const page1 = document.getElementById('page1');
+  const page2 = document.getElementById('page2');
+  const page3 = document.getElementById('page3');
+
+  const nameInput = document.getElementById('nameInput');
+  const startBtn = document.getElementById('startBtn');
+  const inputError = document.getElementById('inputError');
+
+  const greeting = document.getElementById('greeting');
+  const quoteBox = document.getElementById('quote-box');
+  const nextButton = document.getElementById('next-button');
+  const scoreboard = document.getElementById('scoreboard');
+  const mascot = document.getElementById('mascot');
+  const particlesContainer = document.querySelector('.particles');
+
+  // Quotes array
+  const quotes = [
+      "UTBK bukan soal seberapa pintar kamu, tapi seberapa kuat kamu bertahan dan belajar😉",
+      "Belajar itu seperti internet, terkadang buffering, tapi akhirnya nyambung juga😫",
+      "Kalau gagal UTBK jangan sedih, coba lagi. Kayak aplikasi crash, restart itu wajib🤩",
+      "Jangan lupa minum air putih, biar otak nggak dehidrasi kayak sinyal 3G😥",
+      "UTBK 2025: Tempat di mana mimpi besar dimulai dan alasan tidur siang jadi sah!😴",
+      "Saat kamu merasa jenuh belajar, ingat: kamu sedang upgrade diri menjadi versi yang lebih keren!😎",
+      "Kalau buku tebal, anggap saja itu lifting buat otakmu. Biar makin kuat😵",
+      "Ingat, belajar itu marathon, bukan sprint. Tapi kalau sprint sambil jogging juga gapapa kok🙄",
+      "UTBK cuma tes, jadi datang, kerjakan, dan lupakan🤣",
+      "Jangan takut kalau lupa jawaban, tanya aja sama panitianya😋"
+  ];
+
+  // Switch page helper
+  function switchPage(from, to) {
+    from.classList.remove('active');
+    to.classList.add('active');
+    // Reset scroll on new page (in case)
+    to.scrollTop = 0;
+  }
+
+  // Validate name input
+  function validateName() {
+    const val = nameInput.value.trim();
+    if(val.length === 0) {
+      inputError.textContent = 'Nama gak boleh kosong ya ganteng & cantikku! 🥰';
+      return false;
+    }
+    inputError.textContent = '';
+    return true;
+  }
+
+  // Start button clicked
+  startBtn.addEventListener('click', () => {
+    if(!validateName()) return;
+    userName = nameInput.value.trim();
+    initGamePage();
+    switchPage(page1, page2);
+  });
+
+  // Enable enter key to start on input
+  nameInput.addEventListener('keydown', e => {
+    if(e.key === 'Enter') {
+      e.preventDefault();
+      startBtn.click();
+    }
+  });
+
+  // Initialize page2 greeting and first quote
+  function initGamePage() {
+    greeting.textContent = `Hai, ${userName}! Semangat ya🥰!`;
+    currentIndex = Math.floor(Math.random() * quotes.length);
+    quoteBox.textContent = quotes[currentIndex];
+    energy = 0;
+    updateEnergyDisplay();
+  }
+
+  // Animate mascot: shake and blink eyes
+  function animateMascot() {
+    mascot.style.transition = 'transform 0.3s ease';
+    mascot.style.transform = 'rotate(-15deg) translateX(-12px)';
+    setTimeout(() => {
+      mascot.style.transform = 'rotate(15deg) translateX(12px)';
+    }, 150);
+    setTimeout(() => {
+      mascot.style.transform = 'rotate(0deg) translateX(0)';
+    }, 300);
+
+    // blinking eyes by toggling opacity of eye layers
+    const eyes = mascot.querySelectorAll('ellipse');
+    if(eyes.length >= 2) {
+      eyes.forEach(eye => eye.style.opacity = '0.15');
+      setTimeout(() => {
+        eyes.forEach(eye => eye.style.opacity = '1');
+      }, 350);
+    }
+  }
+
+  // Sparkle particle spawn near next button
+  function spawnSparkle() {
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('particle');
+    const size = 6 + Math.random() * 5;
+    sparkle.style.width = `${size}px`;
+    sparkle.style.height = `${size}px`;
+
+    // Position sparkle around next button area
+    const btnRect = nextButton.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    const leftPercent = ((btnRect.left - containerRect.left) + (Math.random() * btnRect.width)) / containerRect.width * 100;
+    const topPercent = ((btnRect.top - containerRect.top) + (Math.random() * btnRect.height)) / containerRect.height * 100;
+    sparkle.style.left = `${leftPercent}%`;
+    sparkle.style.top = `${topPercent}%`;
+
+    sparkle.style.background = `hsl(${Math.floor(Math.random()*30+15)}, 100%, 65%)`;
+
+    sparkle.style.animation = `sparkle 1s ease forwards`;
+    particlesContainer.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1000);
+  }
+
+  // Update quote, energy, animations
+  function updateQuote() {
+    currentIndex = (currentIndex + 1) % quotes.length;
+    quoteBox.textContent = quotes[currentIndex];
+    
+    // Shake animation on quote box
+    quoteBox.classList.add('shake');
+    setTimeout(() => quoteBox.classList.remove('shake'), 600);
+
+    animateMascot();
+
+    // Increase energy and update scoreboard
+    energy += 10;
+    updateEnergyDisplay();
+
+    // Sparkle spawn
+    for(let i=0; i<6; i++) {
+      setTimeout(spawnSparkle, i * 130);
+    }
+
+    // Check for secret page trigger
+    if(energy >= 100) {
+      setTimeout(() => {
+        switchPage(page2, page3);
+      }, 700);
+    }
+  }
+
+  function updateEnergyDisplay() {
+    scoreboard.textContent = `Impression: ${energy}`;
+  }
+
+  // Keyboard accessibility - next quote via Enter or Space on quote box
+  quoteBox.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      nextButton.click();
+    }
+  });
+
+  // Button click triggers next quote
+  nextButton.addEventListener('click', updateQuote);
+  quoteBox.addEventListener('click', updateQuote);
+
+</script>
+</body>
+</html>
